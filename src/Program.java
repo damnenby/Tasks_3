@@ -16,20 +16,29 @@ public class Program
         erika.setAdresse(adresse);
 // Hier fehlt Ihr Code
 
-            FileOutputStream fos = new FileOutputStream("tempFile");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(hugo);
-            oos.writeObject(erika);
+            java.util.ArrayList<Person> list = new java.util.ArrayList<>();
+            list.add(erika);
+            list.add(hugo);
+
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(bos);
+            oos.writeObject(list);
+            byte[] data = bos.toByteArray();
             oos.close();
 
-            FileInputStream fis = new FileInputStream("tempFile");
-            ObjectInputStream ois = new ObjectInputStream(fis);
+            ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(data));
 
-            Person erika2 = (Person)ois.readObject();
+            java.util.ArrayList<Person> list2 = (java.util.ArrayList<Person>) ois.readObject();
+            ois.close();
+
+            Person erika2 = (Person) list2.get(0);
+            Person hugo2 = (Person) list2.get(1);
 
             ois.close();
 
-            System.out.println(erika2.getAdresse());
+            System.out.println(erika2);
+            System.out.println(hugo2);
+            System.out.println(hugo2.getAdresse() == erika2.getAdresse());
 
         }
 
