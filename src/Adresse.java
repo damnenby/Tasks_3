@@ -1,4 +1,6 @@
-public class Adresse {
+import java.io.Serializable;
+
+public class Adresse implements Serializable {
     private String strasse;
     private String ort;
     public String getStrasse() { return this.strasse; }
