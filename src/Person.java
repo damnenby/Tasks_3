@@ -1,5 +1,4 @@
-public class Person implements Serializable
-{
+public class Person {
     private String name;
     private Adresse adresse;
     public String getName() { return name; }

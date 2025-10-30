@@ -1,5 +1,4 @@
-public class Adresse implements Serializable
-{
+public class Adresse {
     private String strasse;
     private String ort;
     public String getStrasse() { return this.strasse; }
